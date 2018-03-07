@@ -21,10 +21,19 @@ int Mite::Cpp::CLI::Logic::GetAdd(int val)
 	return _impl->GetAdd(val); // Call native Get
 }
 
-void Mite::Cpp::CLI::Logic::Gobba(cli::array<int>^ ub)
-{
 
+cli::array<float>^ Mite::Cpp::CLI::Logic::BackSlashArray(int span, float minval, float maxval)
+{
+	cli::array<float>^ retArray = gcnew cli::array<float>(span * span);
+	float *bb = _impl->BackSlashArray(span, minval, maxval);
+	for (int i = 0; i < span*span; i++)
+	{
+		retArray[i] = bb[i];
+	}
+
+	return retArray;
 }
+
 
 cli::array<int>^ Mite::Cpp::CLI::Logic::Yobba()
 {

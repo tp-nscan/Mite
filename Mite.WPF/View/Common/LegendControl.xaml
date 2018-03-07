@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Mite.View.Common.LegendControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:common="clr-namespace:Mite.ViewModel.Design.Common"
+             xmlns:common1="clr-namespace:Mite.View.Common"
+             mc:Ignorable="d" 
+             d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance Type=common:LegendVmD, IsDesignTimeCreatable=True}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <common1:WbImage x:Name="wbImage"
+                    PointerPosition ="{Binding WbImageVm.PointerPosition, Mode=TwoWay}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    ImageData="{Binding WbImageVm.ImageData}"
+                 />
+
+        <TextBlock Grid.Row="1" Text="{Binding MinVal}" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="1" Text="{Binding MidVal}" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="{Binding MaxVal}" HorizontalAlignment="Right"/>
+
+    </Grid>
+</UserControl>

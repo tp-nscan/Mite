@@ -1,0 +1,39 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common="clr-namespace:Mite.ViewModel.Design.Common"
+             xmlns:common1="clr-namespace:Mite.View.Common"
+             x:Class="Mite.View.Common.Hist1DControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="256" d:DesignWidth="268"
+             d:DataContext="{d:DesignInstance Type=common:Hist1DvmD, IsDesignTimeCreatable=True}">
+    <Grid>
+
+        <Grid Style="{StaticResource ContentRoot}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border CornerRadius="2" BorderBrush="Gray" BorderThickness="1" Grid.Row="0" 
+				RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Margin="0,0,5,0">
+                <Border.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="30"/>
+                    </TransformGroup>
+                </Border.RenderTransform>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Bins:" Style="{StaticResource Heading2}" VerticalAlignment="Center"/>
+                    <TextBox MinWidth="30" Text="{Binding BinCount}" Margin="4,0,0,0" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+            <common1:GraphControl Grid.Row="1" x:Name="graphControl" DataContext="{Binding GraphVm}" />
+        </Grid>
+
+    </Grid>
+</UserControl>

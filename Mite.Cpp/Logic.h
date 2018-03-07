@@ -14,6 +14,7 @@ namespace Mite
 			int Get() const; // That's where our code goes
 			int GetAdd(int val);
 			int *Yob();
+			float* BackSlashArray(int span, float minval, float maxval);
 		};
 	}
 }

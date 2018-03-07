@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mite.WPF</RootNamespace>
     <AssemblyName>Mite.WPF</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -79,8 +80,32 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FSharp.Core, Version=4.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FSharp.Core.4.3.4\lib\net45\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.4.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reactive.Core, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Linq.3.1.1\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.PlatformServices.3.1.1\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Windows.Threading.3.1.1\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -92,12 +117,69 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
+      <HintPath>..\packages\WriteableBitmapEx.1.5.1.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\BindableBase .cs" />
+    <Compile Include="Common\BText.cs" />
+    <Compile Include="Common\ColorEx.cs" />
+    <Compile Include="Common\Converters\AdditionConverter.cs" />
+    <Compile Include="Common\EnumerExt.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\StringFormats.cs" />
+    <Compile Include="ViewModel\Common\GraphVm.cs" />
+    <Compile Include="ViewModel\Common\Grid2DVm.cs" />
+    <Compile Include="ViewModel\Common\Grid4DVm.cs" />
+    <Compile Include="ViewModel\Common\GroupSelectorVm.cs" />
+    <Compile Include="ViewModel\Common\Hist1dVm.cs" />
+    <Compile Include="ViewModel\Common\Hist2DVm.cs" />
+    <Compile Include="ViewModel\Common\ItemSelectorVm.cs" />
+    <Compile Include="ViewModel\Common\LegendVm.cs" />
+    <Compile Include="ViewModel\Common\ProjectionControlVm.cs" />
+    <Compile Include="ViewModel\Common\Sz2IntVm.cs" />
+    <Compile Include="ViewModel\Common\WbImageData.cs" />
+    <Compile Include="ViewModel\Common\WbImageVm.cs" />
+    <Compile Include="ViewModel\Design\Common\GraphVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\Grid2DVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\Grid4DVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\GroupSelectorVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\HIst1DVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\Hist2DVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\LegendVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\ProjectionControlVmD.cs" />
+    <Compile Include="View\Common\GraphControl.xaml.cs">
+      <DependentUpon>GraphControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\Grid2DControl.xaml.cs">
+      <DependentUpon>Grid2DControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\Grid4DControl.xaml.cs">
+      <DependentUpon>Grid4DControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\GroupSelectorControl.xaml.cs">
+      <DependentUpon>GroupSelectorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\Hist1DControl.xaml.cs">
+      <DependentUpon>Hist1DControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\Hist2DControl.xaml.cs">
+      <DependentUpon>Hist2DControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\LegendControl.xaml.cs">
+      <DependentUpon>LegendControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\ProjectionControl.xaml.cs">
+      <DependentUpon>ProjectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\WbImage.xaml.cs">
+      <DependentUpon>WbImage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,9 +192,44 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Common\GraphControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\Grid2DControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\Grid4DControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\GroupSelectorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\Hist1DControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\Hist2DControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\LegendControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\ProjectionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\WbImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\LatticeColors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -130,6 +247,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -140,12 +258,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mite.Cpp.CLI\Mite.Cpp.CLI.vcxproj">
       <Project>{146f3245-7f2d-416f-9978-0fa733ad2f2f}</Project>
       <Name>Mite.Cpp.CLI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TT\TT.fsproj">
+      <Project>{e32e990b-c010-4014-8e45-22c2a577caa1}</Project>
+      <Name>TT</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

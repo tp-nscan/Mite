@@ -24,9 +24,9 @@ namespace Mite
 				!Logic();
 
 				int Get();
-				int GetAdd(int val); 
-				void Gobba(cli::array<int>^);
+				int GetAdd(int val);
 				cli::array<int>^ Yobba();
+				cli::array<float>^ BackSlashArray(int span, float minval, float maxval);
 				void Destroy();
 
 				static void InitializeLibrary(System::String^ path);

@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="Mite.View.Common.GroupSelectorControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="clr-namespace:Mite.ViewModel.Design.Common"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance Type=common:GroupSelectorVmD, IsDesignTimeCreatable=True}"
+    >
+    <UserControl.Resources>
+        <DataTemplate x:Key="ItselTemplate">
+            <Grid Margin="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="2" FontSize="12" Text="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <CheckBox Grid.Column="1" IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        
+        <ItemsPanelTemplate x:Key="GsPanel">
+            <StackPanel Orientation="{Binding Orientation}"/>
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+
+    <ItemsControl ItemsSource ="{Binding ItemSelectors}" ItemTemplate="{StaticResource ItselTemplate}" ItemsPanel="{StaticResource GsPanel}" >
+
+    </ItemsControl>
+
+</UserControl>
