@@ -84,8 +84,6 @@ namespace Mite.ViewModel.Common
                     );
 
             GraphVm.SetData(
-                imageWidth: -1.0,
-                imageHeight: -1.0,
                 plotPoints: new List<P2V<float, Color>>(), 
                 plotLines: new List<LS2V<float, Color>>(), 
                 filledRects: MakePlotRectangles(points: ject),

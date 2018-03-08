@@ -94,8 +94,6 @@ namespace Mite.ViewModel.Common
             var maxFreq = bins.Max(p => p.V);
             
             GraphVm.SetData(
-                imageWidth: -1.0,
-                imageHeight: -1.0,
                 boundingRect: new R<float>(maxY:maxFreq, minX: MinValue, minY: 0.0f, maxX: MaxValue),
                 plotPoints: Enumerable.Empty<P2V<float,Color>>(),
                 plotLines: Enumerable.Empty<LS2V<float, Color>>(),

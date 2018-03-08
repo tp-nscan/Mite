@@ -15,25 +15,11 @@ module DesignData =
            { P2V.X=p.X; Y=p.Y; V = values.[p.X * strides.X + p.Y]})
 
 
-    let RasterizeArrayToRects (roiD:Sz4<int>) (roiR:Sz4<float>) 
-                              (dataWith:int) (values:array<float32>) =
-
-        let xD = (roiR.X2 - roiR.X1) / ((float roiD.X2) - (float roiD.X1))
-        let yD = (roiR.Y2 - roiR.Y1) / ((float roiD.Y2) - (float roiD.Y1))
-        
-        (A2dUt.RasterRoi roiD dataWith )|> Seq.map(fun p ->
-           { RV.MinX = (float p.X) * xD; 
-             RV.MaxX = (float p.X + 1.) * xD;
-             RV.MinY = (float p.Y) * yD; 
-             RV.MaxY = (float p.Y + 1.) * yD; 
-             RV.V = values.[p.X * dataWith + p.Y]})
-
-
-    let RasterizeArrayToRects2<'T> (roiD:Sz4<int>) (roiR:Sz4<single>) 
+    let RasterizeArrayToRects<'T> (roiD:R<int>) (roiR:R<float32>) 
                                    (dataWith:int) (f:int->'T) =
 
-        let xD = (roiR.X2 - roiR.X1) / ((single roiD.X2) - (single roiD.X1))
-        let yD = (roiR.Y2 - roiR.Y1) / ((single roiD.Y2) - (single roiD.Y1))
+        let xD = (roiR.MaxX - roiR.MinX) / (float32 (roiD.MaxX - roiD.MinX))
+        let yD = (roiR.MaxY - roiR.MinY) / (float32 (roiD.MaxY - roiD.MinY))
         
         (A2dUt.RasterRoi roiD dataWith )|> Seq.map(fun p ->
            { RV.MinX = (single p.X) * xD; 

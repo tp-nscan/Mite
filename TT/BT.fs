@@ -129,6 +129,16 @@ module BT =
                 { R.MinX=x2; R.MaxX=x1; R.MinY=y2; R.MaxY=y1; }
 
 
+    let inline RVClipByR< ^v, ^a when ^a: comparison> (bounds : R< ^a>) (mrv : RV< ^a, ^v>) =
+      { 
+        RV.MinX = if (mrv.MinX > bounds.MinX) then mrv.MinX else bounds.MinX; 
+        RV.MaxX = if (mrv.MaxX < bounds.MaxX) then mrv.MaxX else bounds.MaxX;  
+        RV.MinY = if (mrv.MinY > bounds.MinY) then mrv.MinY else bounds.MinY;  
+        RV.MaxY = if (mrv.MaxY < bounds.MaxY) then mrv.MaxY else bounds.MaxY; 
+        V = mrv.V
+      }
+
+
     let inline walk_the_creature_2 (creature:^a when ^a:(member Walk : unit -> unit)) =
         (^a : (member Walk : unit -> unit) creature)
 
@@ -311,9 +321,9 @@ module A2dUt =
                     yield {P2.X= col; Y= row;}
             }
        
-    let RasterRoi (roiD:Sz4<int>) (dataWidth:int) =
-       seq { for col in roiD.X1 .. roiD.X2 - 1 do
-               for row in roiD.Y1 .. roiD.Y2 - 1 do
+    let RasterRoi (roiD:R<int>) (dataWidth:int) =
+       seq { for col in roiD.MinX .. roiD.MaxX - 1 do
+               for row in roiD.MinY .. roiD.MaxY - 1 do
                   yield {P2.X= col; Y= row;}
            }
 

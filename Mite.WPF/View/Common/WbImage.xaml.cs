@@ -58,15 +58,16 @@ namespace Mite.View.Common
 
             if (ImageData == null) return;
 
+            _writeableBmp = BitmapFactory.New((int)ActualWidth, (int)ActualHeight);
 
-            if (ImageData.imageSize.X < 0.0)
-            {
-                _writeableBmp = BitmapFactory.New((int)ActualWidth, (int)ActualHeight);
-            }
-            else
-            {
-                _writeableBmp = BitmapFactory.New((int)ImageData.imageSize.X, (int)ImageData.imageSize.Y);
-            }
+            //if (ImageData.imageSize.X < 0.0)
+            //{
+            //    _writeableBmp = BitmapFactory.New((int)ActualWidth, (int)ActualHeight);
+            //}
+            //else
+            //{
+            //    _writeableBmp = BitmapFactory.New((int)ImageData.imageSize.X, (int)ImageData.imageSize.Y);
+            //}
 
             RootImage.Source = _writeableBmp;
 

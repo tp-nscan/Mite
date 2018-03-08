@@ -16,8 +16,6 @@ namespace Mite.ViewModel.Common
         public WbImageVm WbImageVm { get; }
 
         public void SetData(
-            double imageWidth,
-            double imageHeight,
             IEnumerable<P2V<float,Color>> plotPoints,
             IEnumerable<LS2V<float, Color>> plotLines,
             IEnumerable<RV<float, Color>> filledRects,
@@ -25,7 +23,6 @@ namespace Mite.ViewModel.Common
         )
         {
             WbImageVm.ImageData = Id.MakeImageData(
-                    imageSize: new Sz2<double>(imageWidth, imageHeight), 
                     plotPoints: plotPoints,
                     filledRects: filledRects,
                     openRects: openRects,
@@ -40,23 +37,19 @@ namespace Mite.ViewModel.Common
 
         public void SetData(
             R<float> boundingRect,
-            double imageWidth,
-            double imageHeight,
             IEnumerable<P2V<float, Color>> plotPoints,
             IEnumerable<LS2V<float, Color>> plotLines,
             IEnumerable<RV<float, Color>> filledRects,
             IEnumerable<RV<float, Color>> openRects
         )
         {
-
-            WbImageVm.ImageData = new ImageData(
-                    boundingRect: boundingRect,
-                    plotPoints: plotPoints.ToArray(),
-                    filledRects: filledRects.ToArray(),
-                    openRects: openRects.ToArray(),
-                    plotLines: plotLines.ToArray(),
-                    imageSize: new Sz2<double>(imageWidth, imageHeight)
-                );
+            WbImageVm.ImageData = Id.MakeImageDataAndClip(
+                clipRegion: boundingRect,
+                plotPoints: plotPoints,
+                filledRects: filledRects,
+                openRects: openRects,
+                plotLines: plotLines
+             );
 
             MinX = boundingRect.MinX;
             MinY = boundingRect.MinY;

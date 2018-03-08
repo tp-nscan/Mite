@@ -95,8 +95,7 @@ namespace Mite.ViewModel.Common
             var cursorFilter = FilterByCursor();
             var rectangler = MakeFilledRectangle();
             WbImageVm.ImageData = new ImageData(
-                    boundingRect: new R<float>(0, Strides.X, 0, Strides.Y), 
-                    imageSize: new Sz2<double>(-1.0, -1.0),
+                    boundingRect: new R<float>(0, Strides.X, 0, Strides.Y),
                     openRects: MakeOpenRectangle().ToArray(),
                     filledRects: Values
                                     .Where(cursorFilter)

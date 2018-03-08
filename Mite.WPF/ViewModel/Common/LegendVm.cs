@@ -20,7 +20,6 @@ namespace Mite.ViewModel.Common
             _maxColor = maxColor;
 
             WbImageVm.ImageData = Id.MakeImageData(
-                imageSize: new Sz2<double>(-1, -1),
                 plotPoints: Enumerable.Empty<P2V<float, Color>>(),
                 filledRects: PlotRectangles,
                 openRects: Enumerable.Empty<RV<float, Color>>(),

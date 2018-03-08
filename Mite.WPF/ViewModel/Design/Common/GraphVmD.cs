@@ -11,8 +11,6 @@ namespace Mite.ViewModel.Design.Common
         public GraphVmD()
         {
             SetData(
-                imageWidth: -1, 
-                imageHeight:-1, 
                 plotPoints: PlotPoints, 
                 plotLines: Enumerable.Empty<LS2V<float, Color>>(), 
                 filledRects: PlotRectangles,

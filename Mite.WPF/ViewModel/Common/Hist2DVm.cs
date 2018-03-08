@@ -121,8 +121,6 @@ namespace Mite.ViewModel.Common
 
             GraphVm.Watermark = $"Bins count: [{BinCounts.X}, {BinCounts.Y}]";
             GraphVm.SetData(
-                imageWidth: -1.0,
-                imageHeight: -1.0,
                 boundingRect: Bounds,
                 plotPoints: Enumerable.Empty<P2V<float, Color>>(),
                 plotLines: Enumerable.Empty<LS2V<float, Color>>(),

@@ -39,7 +39,6 @@ namespace Mite.ViewModel.Common
 
             Values = values.ToList();
             WbImageVm.ImageData = Id.MakeImageData(
-                    imageSize: new Sz2<double>(-1.0, -1.0),
                     plotPoints: new List<P2V<float, Color>>(), 
                     filledRects: Values.Select(MakeRectangle).ToList(),
                     openRects: new List<RV<float, Color>>(), 

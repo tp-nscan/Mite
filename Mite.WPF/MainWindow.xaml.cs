@@ -33,7 +33,7 @@ namespace Mite.WPF
             Wank.DataContext = GraphVm;
         }
 
-        static Sz2<int> DataSz2 = new Sz2<int>(8, 8);
+        static Sz2<int> DataSz2 = new Sz2<int>(5, 5);
         GraphVm GraphVm;
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -67,24 +67,28 @@ namespace Mite.WPF
             using (var wrapper = new Logic())
             {
                 var res = wrapper.BackSlashArray(DataSz2.X, 0, 1).ToArray();
-                var dataWin = new Sz4<int>(0, 0, 5, 5);
-                var displayWin = new Sz4<float>(0, 0, 400, 400);
+                var dataWin = new R<int>(0, 3, 1, 5);
+                var displayWin = new R<float>(0, 400, 0, 400);
+                var clipWin = new R<float>(0, 300, 0, 400);
 
-                //var rawst = DesignData.RasterizeArrayToRects(dataWin, displayWin, WankStrides.Y, res)
-                //                      .ToArray();
 
                 var cf = FuncConvert.ToFSharpFunc<int, Color>(
                     x => ColorSets.GetLegColor(ColorSets.RedBlueSFLeg, res[x]));
+                var rawst = DesignData.RasterizeArrayToRects(dataWin, displayWin, DataSz2.Y, cf).ToArray();
 
-
-                var rawst = DesignData.RasterizeArrayToRects2(dataWin, displayWin, DataSz2.Y, cf);
-
-                GraphVm.SetData(
-                    imageWidth: -1,
-                    imageHeight: -1,
+                var mid = Id.MakeImageData(
                     plotPoints: Enumerable.Empty<P2V<float, Color>>(),
                     plotLines: Enumerable.Empty<LS2V<float, Color>>(),
                     filledRects: rawst,
+                    openRects: Enumerable.Empty<RV<float, Color>>()
+                    );
+
+                var rawst2 = Id.ClipImageData(mid, clipWin);
+
+                GraphVm.SetData(
+                    plotPoints: Enumerable.Empty<P2V<float, Color>>(),
+                    plotLines: Enumerable.Empty<LS2V<float, Color>>(),
+                    filledRects: rawst2.filledRects,
                     openRects: Enumerable.Empty<RV<float, Color>>()
                    );
 
