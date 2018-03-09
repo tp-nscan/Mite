@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Mite.Common;
-using Mite.ViewModel.Common;
+using Mite.WPF.ViewModel.Common;
 
-namespace Mite.ViewModel.Design.Common
+namespace Mite.WPF.ViewModel.Design.Common
 {
     public class ProjectionControlVmD : ProjectionControlVm
     {

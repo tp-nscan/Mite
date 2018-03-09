@@ -2,7 +2,7 @@
 using System.Reactive.Subjects;
 using Mite.Common;
 
-namespace Mite.ViewModel.Common
+namespace Mite.WPF.ViewModel.Common
 {
     public class ItemSelectorVm : BindableBase
     {

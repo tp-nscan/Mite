@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mite.ViewModel.Common;
+using Mite.WPF.ViewModel.Common;
 using TT;
 
-namespace Mite.ViewModel.Design.Common
+namespace Mite.WPF.ViewModel.Design.Common
 {
     public class Hist2DvmD : Hist2DVm
     {

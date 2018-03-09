@@ -1,7 +1,7 @@
 ﻿using System.Windows.Media;
-using Mite.ViewModel.Common;
+using Mite.WPF.ViewModel.Common;
 
-namespace Mite.ViewModel.Design.Common
+namespace Mite.WPF.ViewModel.Design.Common
 {
     public class LegendVmD : LegendVm
     {

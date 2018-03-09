@@ -133,6 +133,7 @@
     <Compile Include="Common\EnumerExt.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\StringFormats.cs" />
+    <Compile Include="ViewModel\Common\GraphLatticeVm.cs" />
     <Compile Include="ViewModel\Common\GraphVm.cs" />
     <Compile Include="ViewModel\Common\Grid2DVm.cs" />
     <Compile Include="ViewModel\Common\Grid4DVm.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="ViewModel\Common\Hist2DVm.cs" />
     <Compile Include="ViewModel\Common\ItemSelectorVm.cs" />
     <Compile Include="ViewModel\Common\LegendVm.cs" />
+    <Compile Include="ViewModel\Common\IntRangeVm.cs" />
     <Compile Include="ViewModel\Common\ProjectionControlVm.cs" />
     <Compile Include="ViewModel\Common\Sz2IntVm.cs" />
     <Compile Include="ViewModel\Common\WbImageData.cs" />
@@ -153,6 +155,9 @@
     <Compile Include="ViewModel\Design\Common\Hist2DVmD.cs" />
     <Compile Include="ViewModel\Design\Common\LegendVmD.cs" />
     <Compile Include="ViewModel\Design\Common\ProjectionControlVmD.cs" />
+    <Compile Include="View\Common\GraphLatticeControl.xaml.cs">
+      <DependentUpon>GraphLatticeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Common\GraphControl.xaml.cs">
       <DependentUpon>GraphControl.xaml</DependentUpon>
     </Compile>
@@ -192,6 +197,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Common\GraphLatticeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Common\GraphControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

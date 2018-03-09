@@ -5,7 +5,7 @@ using System.Windows.Media;
 using Mite.Common;
 using TT;
 
-namespace Mite.ViewModel.Common
+namespace Mite.WPF.ViewModel.Common
 {
     public class Hist1DVm : BindableBase
     {

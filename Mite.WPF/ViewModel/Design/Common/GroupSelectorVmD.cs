@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Windows.Controls;
 using Mite.Common;
-using Mite.ViewModel.Common;
+using Mite.WPF.ViewModel.Common;
 
-namespace Mite.ViewModel.Design.Common
+namespace Mite.WPF.ViewModel.Design.Common
 {
     public class GroupSelectorVmD : GroupSelectorVm
     {

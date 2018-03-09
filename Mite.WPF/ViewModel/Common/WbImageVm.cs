@@ -4,7 +4,7 @@ using System.Windows;
 using Mite.Common;
 using TT;
 
-namespace Mite.ViewModel.Common
+namespace Mite.WPF.ViewModel.Common
 {
     public class WbImageVm : BindableBase
     {

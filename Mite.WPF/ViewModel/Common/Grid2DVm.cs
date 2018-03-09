@@ -4,8 +4,9 @@ using System.Linq;
 using System.Windows.Media;
 using Mite.Common;
 using TT;
+using Microsoft.FSharp.Core;
 
-namespace Mite.ViewModel.Common
+namespace Mite.WPF.ViewModel.Common
 {
     public class Grid2DVm<T> : BindableBase
     {

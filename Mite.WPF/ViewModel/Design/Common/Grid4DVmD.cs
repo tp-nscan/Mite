@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Mite.ViewModel.Common;
+using Mite.WPF.ViewModel.Common;
 using TT;
 
-namespace Mite.ViewModel.Design.Common
+namespace Mite.WPF.ViewModel.Design.Common
 {
     public class Grid4DVmD : Grid4DVm<float>
     {

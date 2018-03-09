@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Mite.ViewModel.Common;
+using Mite.WPF.ViewModel.Common;
 
 namespace Mite.WPF
 {
@@ -26,15 +16,8 @@ namespace Mite.WPF
         public MainWindow()
         {
             InitializeComponent();
-            GraphVm = new GraphVm();
-            GraphVm.Title = "Graph Title";
-            GraphVm.TitleX = "Axis X Title";
-            GraphVm.TitleY = "Axis Y Title";
-            Wank.DataContext = GraphVm;
         }
 
-        static Sz2<int> DataSz2 = new Sz2<int>(5, 5);
-        GraphVm GraphVm;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -59,7 +42,15 @@ namespace Mite.WPF
 
 
         private void Button_Click2(object sender, RoutedEventArgs e)
-        {
+        {        
+            var DataSz2 = new Sz2<int>(5, 5);
+            var GraphVm = new GraphVm();
+            GraphVm.Title = "Graph Title";
+            GraphVm.TitleX = "Axis X Title";
+            GraphVm.TitleY = "Axis Y Title";
+            Wank.DataContext = GraphVm;
+
+
             var dilly = System.IO.Path.GetFullPath("../../../../Debug/Mite.Cpp.dll");
             //Logic.InitializeLibrary(@"C:\Users\tpnsc\source\repos\Mite\Debug\Mite.Cpp.dll");
             Logic.InitializeLibrary(dilly);
@@ -77,10 +68,10 @@ namespace Mite.WPF
                 var rawst = DesignData.RasterizeArrayToRects(dataWin, displayWin, DataSz2.Y, cf).ToArray();
 
                 var mid = Id.MakeImageData(
-                    plotPoints: Enumerable.Empty<P2V<float, Color>>(),
-                    plotLines: Enumerable.Empty<LS2V<float, Color>>(),
-                    filledRects: rawst,
-                    openRects: Enumerable.Empty<RV<float, Color>>()
+                        plotPoints: Enumerable.Empty<P2V<float, Color>>(),
+                        plotLines: Enumerable.Empty<LS2V<float, Color>>(),
+                        filledRects: rawst,
+                        openRects: Enumerable.Empty<RV<float, Color>>()
                     );
 
                 var rawst2 = Id.ClipImageData(mid, clipWin);
@@ -95,6 +86,12 @@ namespace Mite.WPF
 
                 //MessageBox.Show("The answer is " + wrapper.GetAdd(5));
             }
+        }
+
+        private void Button_Click3(object sender, RoutedEventArgs e)
+        {
+            var vm = new GraphLatticeVm(new R<int>(minX: -5, maxX: 10, minY: 0, maxY: 20));
+            Wank.DataContext = vm;
         }
     }
 }

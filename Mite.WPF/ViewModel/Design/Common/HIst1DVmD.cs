@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Mite.ViewModel.Common;
+using Mite.WPF.ViewModel.Common;
 using MathNet.Numerics.Distributions;
 using MathNet.Numerics.Random;
 
-namespace Mite.ViewModel.Design.Common
+namespace Mite.WPF.ViewModel.Design.Common
 {
     public class Hist1DvmD : Hist1DVm
     {

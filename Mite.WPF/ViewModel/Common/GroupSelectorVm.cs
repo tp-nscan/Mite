@@ -6,7 +6,7 @@ using System.Reactive.Subjects;
 using System.Windows.Controls;
 using Mite.Common;
 
-namespace Mite.ViewModel.Common
+namespace Mite.WPF.ViewModel.Common
 {
     public class GroupSelectorVm : BindableBase
     {

@@ -1,19 +1,28 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Media;
 using Mite.Common;
 using TT;
+using Microsoft.FSharp.Core;
 
-namespace Mite.ViewModel.Common
+namespace Mite.WPF.ViewModel.Common
 {
     public class GraphVm : BindableBase
     {
         public GraphVm()
         {
             WbImageVm = new WbImageVm();
+            GraphData = Id.MakeGraphData(
+                    title: "Title",
+                    titleX: "titleX",
+                    titleY: "titleY",
+                    xLabeler: FuncConvert.ToFSharpFunc<float, string>(x => x.ToString()),
+                    yLabeler: FuncConvert.ToFSharpFunc<float, string>(x => x.ToString())
+                );
         }
 
         public WbImageVm WbImageVm { get; }
+
+        GraphData GraphData { get; }
 
         public void SetData(
             IEnumerable<P2V<float,Color>> plotPoints,
@@ -29,10 +38,10 @@ namespace Mite.ViewModel.Common
                     plotLines: plotLines
                 );
 
-            MinX = WbImageVm.ImageData.boundingRect.MinX;
-            MinY = WbImageVm.ImageData.boundingRect.MinY;
-            MaxX = WbImageVm.ImageData.boundingRect.MaxX;
-            MaxY = WbImageVm.ImageData.boundingRect.MaxY;
+            MinStrX = GraphData.xLabeler.Invoke(WbImageVm.ImageData.boundingRect.MinX);
+            MinStrY = GraphData.yLabeler.Invoke(WbImageVm.ImageData.boundingRect.MinY);
+            MaxStrX = GraphData.xLabeler.Invoke(WbImageVm.ImageData.boundingRect.MaxX);
+            MaxStrY = GraphData.yLabeler.Invoke(WbImageVm.ImageData.boundingRect.MaxY);
         }
 
         public void SetData(
@@ -51,54 +60,10 @@ namespace Mite.ViewModel.Common
                 plotLines: plotLines
              );
 
-            MinX = boundingRect.MinX;
-            MinY = boundingRect.MinY;
-            MaxX = boundingRect.MaxX;
-            MaxY = boundingRect.MaxY;
-        }
-
-        private float _minX;
-        public float MinX
-        {
-            get { return _minX; }
-            set
-            {
-                SetProperty(ref _minX, value);
-                MinStrX = value.ToLegendFormatCode();
-            }
-        }
-
-        private float _minY;
-        public float MinY
-        {
-            get { return _minY; }
-            set
-            {
-                SetProperty(ref _minY, value);
-                MinStrY = value.ToLegendFormatCode();
-            }
-        }
-
-        private float _maxX;
-        public float MaxX
-        {
-            get { return _maxX; }
-            set
-            {
-                SetProperty(ref _maxX, value);
-                MaxStrX = value.ToLegendFormatCode();
-            }
-        }
-
-        private float _maxY;
-        public float MaxY
-        {
-            get { return _maxY; }
-            set
-            {
-                SetProperty(ref _maxY, value);
-                MaxStrY = value.ToLegendFormatCode();
-            }
+            MinStrX = GraphData.xLabeler.Invoke(WbImageVm.ImageData.boundingRect.MinX);
+            MinStrY = GraphData.yLabeler.Invoke(WbImageVm.ImageData.boundingRect.MinY);
+            MaxStrX = GraphData.xLabeler.Invoke(WbImageVm.ImageData.boundingRect.MaxX);
+            MaxStrY = GraphData.yLabeler.Invoke(WbImageVm.ImageData.boundingRect.MaxY);
         }
 
         private string _maxStrX;

@@ -14,7 +14,9 @@
         <StackPanel>
             <Button Content="Click me!" Padding="10" Click="Button_Click" />
             <Button Content="Click more!" Padding="10" Click="Button_Click2" />
-            <common1:GraphControl x:Name="Wank" Width="400" Height="400"/>
+            <Button Content="Click more!!" Padding="10" Click="Button_Click3" />
+            <!--<common1:GraphControl x:Name="Wank" Width="400" Height="400"/>-->
+            <common1:GraphLatticeControl x:Name="Wank" Width="400" Height="400"/>
         </StackPanel>
     </Grid>
 </Window>

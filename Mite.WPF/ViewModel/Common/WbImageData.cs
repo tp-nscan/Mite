@@ -3,7 +3,7 @@
 //using Mite.Common;
 //using TT;
 
-//namespace Mite.ViewModel.Core
+//namespace Mite.WPF.ViewModel.Core
 //{
 //    public class WbImageData : BindableBase
 //    {

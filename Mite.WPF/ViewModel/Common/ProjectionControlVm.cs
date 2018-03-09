@@ -7,7 +7,7 @@ using Mite.Common;
 using MathNet.Numerics.LinearAlgebra;
 using TT;
 
-namespace Mite.ViewModel.Common
+namespace Mite.WPF.ViewModel.Common
 {
     public class ProjectionControlVm : BindableBase
     {
