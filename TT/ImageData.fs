@@ -41,12 +41,6 @@ module Id =
 
                             
     let ClipImageData (imageData: ImageData) (clipRegion:R<float32> ) =
-
-        let pps = imageData.plotPoints
-        let ors = imageData.openRects |> Seq.map (BT.RVClipByR<Color, float32> clipRegion) |> Seq.toArray
-        let frs = imageData.filledRects |> Seq.map (BT.RVClipByR<Color, float32> clipRegion) |> Seq.toArray
-        let pls = imageData.plotLines |> Seq.toArray
-
         { 
             plotPoints = imageData.plotPoints; 
             filledRects = imageData.filledRects |> Array.map(BT.RVClipByR<Color, float32> clipRegion);  
@@ -65,6 +59,15 @@ module Id =
 
      let iD = MakeImageData plotPoints filledRects openRects plotLines
      ClipImageData iD clipRegion
+
+    let InitImageData() = 
+        { 
+            ImageData.plotPoints = Array.empty<P2V<float32, Color>>; 
+            filledRects = Array.empty<RV<float32, Color>>;  
+            openRects = Array.empty<RV<float32, Color>>;
+            plotLines = Array.empty<LS2V<float32, Color>>; 
+            boundingRect = { R.MinX = (float32 0); R.MaxX = (float32 0); R.MinY = (float32 0); R.MaxY = (float32 0)}; 
+        }
 
 
     let MakeGraphData (title: string)

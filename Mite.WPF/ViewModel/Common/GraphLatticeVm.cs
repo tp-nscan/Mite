@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Media;
 using Mite.Common;
 using TT;
-using Microsoft.FSharp.Core;
 
 namespace Mite.WPF.ViewModel.Common
 {
@@ -11,6 +10,9 @@ namespace Mite.WPF.ViewModel.Common
     {
         public GraphLatticeVm(R<int> latticeBounds, string title="Title", string titleX = "TitleX", string titleY = "TitleY")
         {
+            _wbImageVm = new WbImageVm();
+            _imageSize = new Sz2<double>(1.0, 1.0);
+            _wbImageVm.ImageData = Id.InitImageData();
             LatticeBounds = latticeBounds;
             MinX = new IntRangeVm(min:LatticeBounds.MinX, max: LatticeBounds.MaxX, cur: LatticeBounds.MinX);
             MinX.OnCurValChanged.Subscribe(v=>CurvalChanged());
@@ -34,9 +36,47 @@ namespace Mite.WPF.ViewModel.Common
             MaxY.MinVal = MinY.CurVal;
         }
 
+        private Action<P2<int>, R<double>, ImageData> cellUpdater;
+        public Action<P2<int>, R<double>, ImageData> GetCellUpdater()
+        {
+            return cellUpdater;
+        }
+
+        public void SetUpdater(Action<P2<int>, R<double>, ImageData> value)
+        {
+            cellUpdater = value;
+            if(WbImageVm != null) Update();
+        }
+
+        void Update()
+        {
+            var bRect = new R<float>(minX: 0, maxX: (float)ImageSize.X, 
+                                     minY: 0, maxY: (float)ImageSize.Y);
+            double spanX = MaxX.CurVal - MinX.CurVal;
+            double spanY = MaxY.CurVal - MinY.CurVal;
+            for(int i = MinX.CurVal; i < MaxX.CurVal; i++)
+            {
+                for (int j = MinY.CurVal; j < MaxY.CurVal; j++)
+                {
+                    cellUpdater(new P2<int>(x: i, y: j),
+                                new R<double>(
+                                        minX: i * ImageSize.X,
+                                        maxX: (i + i) * ImageSize.X,
+                                        minY: i * ImageSize.X,
+                                        maxY: (i + i) * ImageSize.Y
+                                       ),
+                                       _wbImageVm.ImageData);
+                }
+            }
+        }
+
         public R<int> LatticeBounds { get; }
 
-        public WbImageVm WbImageVm { get; }
+        private readonly WbImageVm _wbImageVm;
+        public WbImageVm WbImageVm
+        {
+           get { return _wbImageVm; }
+        }
 
         private IntRangeVm _maxX;
         public IntRangeVm MaxX
@@ -85,6 +125,16 @@ namespace Mite.WPF.ViewModel.Common
         {
             get { return _titleY; }
             set { SetProperty(ref _titleY, value); }
+        }
+
+        private Sz2<double> _imageSize;
+        public Sz2<double> ImageSize
+        {
+            get { return _imageSize; }
+            set {
+                SetProperty(ref _imageSize, value);
+                Update();
+            }
         }
     }
 }

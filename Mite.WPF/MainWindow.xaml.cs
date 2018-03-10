@@ -88,9 +88,15 @@ namespace Mite.WPF
             }
         }
 
+        private static void UpDato(P2<int> dataLoc, R<double> imagePatch, ImageData imageData)
+        {
+            var s = "S";
+        }
+
         private void Button_Click3(object sender, RoutedEventArgs e)
         {
             var vm = new GraphLatticeVm(new R<int>(minX: -5, maxX: 10, minY: 0, maxY: 20));
+            vm.SetUpdater(new Action<P2<int>, R<double>, ImageData>(UpDato));
             Wank.DataContext = vm;
         }
     }

@@ -6,17 +6,17 @@
         xmlns:common1="clr-namespace:Mite.View.Common"
         xmlns:local="clr-namespace:Mite.WPF"
         mc:Ignorable="d"
-        SizeToContent="WidthAndHeight"
-        WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen"
         Title="Example">
-    <Grid>
-        <StackPanel>
-            <Button Content="Click me!" Padding="10" Click="Button_Click" />
-            <Button Content="Click more!" Padding="10" Click="Button_Click2" />
-            <Button Content="Click more!!" Padding="10" Click="Button_Click3" />
-            <!--<common1:GraphControl x:Name="Wank" Width="400" Height="400"/>-->
-            <common1:GraphLatticeControl x:Name="Wank" Width="400" Height="400"/>
-        </StackPanel>
-    </Grid>
+    <DockPanel LastChildFill="True">
+            <Button DockPanel.Dock="Top" Content="Click more!!" Padding="10" Click="Button_Click3" />
+            <common1:GraphLatticeControl x:Name="Wank">
+                <common1:GraphLatticeControl.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </common1:GraphLatticeControl.Background>
+            </common1:GraphLatticeControl>
+     </DockPanel>
 </Window>

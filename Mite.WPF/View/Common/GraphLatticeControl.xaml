@@ -23,7 +23,7 @@
                 <ColumnDefinition MinWidth="30" MaxWidth="40"  Width="2*"/>
                 <ColumnDefinition MinWidth="15" MaxWidth="20"  Width="*"/>
                 <ColumnDefinition Width="60*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15"/>
             </Grid.ColumnDefinitions>
 
             <Border x:Name="wbGrid"
@@ -36,7 +36,7 @@
                     PointerPosition ="{Binding WbImageVm.PointerPosition, Mode=TwoWay}"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    ImageData="{Binding WbImageVm.ImageData}"
+                    ImageData="{Binding WbImageVm.ImageData}" SizeChanged="wbImage_SizeChanged"
                  />
 
             </Border>
@@ -48,19 +48,19 @@
             </Viewbox>
 
             <Viewbox VerticalAlignment="Bottom" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,0,0,5" Stretch="Uniform" MaxHeight="25">
-                <TextBlock Text="{Binding MinY.CurVal}" />
+                <TextBox Text="{Binding MinY.CurVal}" />
             </Viewbox>
 
             <Viewbox VerticalAlignment="Top" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,5,0,0" Stretch="Uniform" MaxHeight="25">
-                <TextBlock Text="{Binding MaxY.CurVal}" Margin="0,0,0,0" />
+                <TextBox Text="{Binding MaxY.CurVal}" Margin="0,0,0,0" />
             </Viewbox>
 
-            <Viewbox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Stretch="Uniform" Grid.ColumnSpan="2" MaxHeight="25">
-                <TextBlock Text="{Binding MinX.CurVal}" />
+            <Viewbox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Stretch="Uniform" Grid.ColumnSpan="1" MaxHeight="25">
+                <TextBox Text="{Binding MinX.CurVal}" />
             </Viewbox>
             
-            <Viewbox Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Stretch="Uniform" Grid.ColumnSpan="2" MaxHeight="25">
-                <TextBlock Text="{Binding MaxX.CurVal}" />
+            <Viewbox Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Stretch="Uniform" Grid.ColumnSpan="2" MaxHeight="25" Margin="0,0,20,0">
+                <TextBox Text="{Binding MaxX.CurVal}" />
             </Viewbox>
             
             <Viewbox Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Stretch="Uniform" Grid.ColumnSpan="2" Margin="0,4" MaxHeight="25">
@@ -68,7 +68,7 @@
             </Viewbox>
 
             <Viewbox Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Stretch="Uniform" Grid.ColumnSpan="1" Margin="4,0" MaxHeight="25">
-                <TextBlock  Text="{Binding TitleY}" RenderTransformOrigin="0.5,0.5" >
+                <TextBlock Text="{Binding TitleY}" RenderTransformOrigin="0.5,0.5" >
                     <TextBlock.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
