@@ -16,6 +16,7 @@ namespace Mite.WPF
         public MainWindow()
         {
             InitializeComponent();
+            InitLogicStuff3();
         }
 
 
@@ -40,16 +41,11 @@ namespace Mite.WPF
             }
         }
 
+        float[] _backSlashArray;
+        Sz2<int> _dataSz2 = new Sz2<int>(25, 25);
 
-        private void Button_Click2(object sender, RoutedEventArgs e)
-        {        
-            var DataSz2 = new Sz2<int>(5, 5);
-            var GraphVm = new GraphVm();
-            GraphVm.Title = "Graph Title";
-            GraphVm.TitleX = "Axis X Title";
-            GraphVm.TitleY = "Axis Y Title";
-            Wank.DataContext = GraphVm;
-
+        void InitLogicStuff()
+        {
 
             var dilly = System.IO.Path.GetFullPath("../../../../Debug/Mite.Cpp.dll");
             //Logic.InitializeLibrary(@"C:\Users\tpnsc\source\repos\Mite\Debug\Mite.Cpp.dll");
@@ -57,46 +53,90 @@ namespace Mite.WPF
 
             using (var wrapper = new Logic())
             {
-                var res = wrapper.BackSlashArray(DataSz2.X, 0, 1).ToArray();
-                var dataWin = new R<int>(0, 3, 1, 5);
-                var displayWin = new R<float>(0, 400, 0, 400);
-                var clipWin = new R<float>(0, 300, 0, 400);
+                _backSlashArray = wrapper.BackSlashArray(_dataSz2.X, 0, 1).ToArray();
+            }
 
+        }
 
-                var cf = FuncConvert.ToFSharpFunc<int, Color>(
-                    x => ColorSets.GetLegColor(ColorSets.RedBlueSFLeg, res[x]));
-                var rawst = DesignData.RasterizeArrayToRects(dataWin, displayWin, DataSz2.Y, cf).ToArray();
+        void InitLogicStuff2()
+        {
+            _backSlashArray = new float[_dataSz2.X * _dataSz2.Y];
 
-                var mid = Id.MakeImageData(
-                        plotPoints: Enumerable.Empty<P2V<float, Color>>(),
-                        plotLines: Enumerable.Empty<LS2V<float, Color>>(),
-                        filledRects: rawst,
-                        openRects: Enumerable.Empty<RV<float, Color>>()
-                    );
-
-                var rawst2 = Id.ClipImageData(mid, clipWin);
-
-                GraphVm.SetData(
-                    plotPoints: Enumerable.Empty<P2V<float, Color>>(),
-                    plotLines: Enumerable.Empty<LS2V<float, Color>>(),
-                    filledRects: rawst2.filledRects,
-                    openRects: Enumerable.Empty<RV<float, Color>>()
-                   );
-
-
-                //MessageBox.Show("The answer is " + wrapper.GetAdd(5));
+            for (int i=0; i< _dataSz2.Y; i++)
+            {
+                for (int j = 0; j < _dataSz2.X; j++)
+                {
+                    _backSlashArray[i * _dataSz2.X + j] = ((float)i) / ((float)_dataSz2.Y);
+                }
             }
         }
 
-        private static void UpDato(P2<int> dataLoc, R<double> imagePatch, ImageData imageData)
+        void InitLogicStuff3()
         {
-            var s = "S";
+            _backSlashArray = new float[_dataSz2.X * _dataSz2.Y];
+
+            for (int i = 0; i < _dataSz2.Y; i++)
+            {
+                for (int j = 0; j < _dataSz2.X; j++)
+                {
+                    _backSlashArray[i * _dataSz2.X + j] = ((float)(2 * i - _dataSz2.X)) / ((float)(_dataSz2.Y * 0.75));
+                }
+            }
+        }
+
+
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {        
+            var GraphVm = new GraphVm();
+            GraphVm.Title = "Graph Title";
+            GraphVm.TitleX = "Axis X Title";
+            GraphVm.TitleY = "Axis Y Title";
+            Wank.DataContext = GraphVm;
+
+      
+            var dataWin = new R<int>(0, 3, 1, 5);
+            var displayWin = new R<float>(0, 400, 0, 400);
+            var clipWin = new R<float>(0, 300, 0, 400);
+
+
+            var cf = FuncConvert.ToFSharpFunc<int, Color>(
+                x => ColorSets.GetLegColor(ColorSets.RedBlueSFLeg, _backSlashArray[x]));
+            var rawst = DesignData.RasterizeArrayToRects(dataWin, displayWin, _dataSz2.Y, cf).ToArray();
+
+            var mid = Id.MakeImageData(
+                    plotPoints: Enumerable.Empty<P2V<float, Color>>(),
+                    plotLines: Enumerable.Empty<LS2V<float, Color>>(),
+                    filledRects: rawst,
+                    openRects: Enumerable.Empty<RV<float, Color>>()
+                );
+
+            var rawst2 = Id.ClipImageData(mid, clipWin);
+
+            GraphVm.SetData(
+                plotPoints: Enumerable.Empty<P2V<float, Color>>(),
+                plotLines: Enumerable.Empty<LS2V<float, Color>>(),
+                filledRects: rawst2.filledRects,
+                openRects: Enumerable.Empty<RV<float, Color>>()
+                );
+
+        }
+
+        private object UpDato(P2<int> dataLoc, R<double> imagePatch)
+        {
+            var offset = dataLoc.X + dataLoc.Y * _dataSz2.X;
+            var color = ColorSets.GetLegColor(ColorSets.RedBlueSFLeg, _backSlashArray[offset]);
+            return new RV<float, Color>(
+                minX: (float)imagePatch.MinX, 
+                maxX: (float)imagePatch.MaxX, 
+                minY: (float)imagePatch.MinY,
+                maxY: (float)imagePatch.MaxY,
+                v:color);
         }
 
         private void Button_Click3(object sender, RoutedEventArgs e)
         {
-            var vm = new GraphLatticeVm(new R<int>(minX: -5, maxX: 10, minY: 0, maxY: 20));
-            vm.SetUpdater(new Action<P2<int>, R<double>, ImageData>(UpDato));
+            var vm = new GraphLatticeVm(new R<int>(minX: 0, maxX: _dataSz2.X, minY: 0, maxY: _dataSz2.Y));
+            vm.SetUpdater(new Func<P2<int>, R<double>, object>(UpDato));
             Wank.DataContext = vm;
         }
     }

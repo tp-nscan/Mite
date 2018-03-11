@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using Mite.Common;
@@ -34,15 +35,16 @@ namespace Mite.WPF.ViewModel.Common
             MaxX.MinVal = MinX.CurVal;
             MinY.MaxVal = MaxY.CurVal;
             MaxY.MinVal = MinY.CurVal;
+            Update();
         }
 
-        private Action<P2<int>, R<double>, ImageData> cellUpdater;
-        public Action<P2<int>, R<double>, ImageData> GetCellUpdater()
+        private Func<P2<int>, R<double>, object> cellUpdater;
+        public Func<P2<int>, R<double>, object> GetCellUpdater()
         {
             return cellUpdater;
         }
 
-        public void SetUpdater(Action<P2<int>, R<double>, ImageData> value)
+        public void SetUpdater(Func<P2<int>, R<double>, object> value)
         {
             cellUpdater = value;
             if(WbImageVm != null) Update();
@@ -50,24 +52,34 @@ namespace Mite.WPF.ViewModel.Common
 
         void Update()
         {
+             var results = new List<RV<float, Color>>();
+
             var bRect = new R<float>(minX: 0, maxX: (float)ImageSize.X, 
                                      minY: 0, maxY: (float)ImageSize.Y);
             double spanX = MaxX.CurVal - MinX.CurVal;
             double spanY = MaxY.CurVal - MinY.CurVal;
+
             for(int i = MinX.CurVal; i < MaxX.CurVal; i++)
             {
                 for (int j = MinY.CurVal; j < MaxY.CurVal; j++)
                 {
-                    cellUpdater(new P2<int>(x: i, y: j),
-                                new R<double>(
-                                        minX: i * ImageSize.X,
-                                        maxX: (i + i) * ImageSize.X,
-                                        minY: i * ImageSize.X,
-                                        maxY: (i + i) * ImageSize.Y
-                                       ),
-                                       _wbImageVm.ImageData);
+                    results.Add( (RV<float, Color>)
+                        cellUpdater(new P2<int>(x: i, y: j),
+                                    new R<double>(
+                                            minX: i * ImageSize.X,
+                                            maxX: (i + 1) * ImageSize.X,
+                                            minY: j * ImageSize.Y,
+                                            maxY: (j + 1) * ImageSize.Y
+                                           )));
                 }
             }
+
+            WbImageVm.ImageData = Id.MakeImageData(
+                    plotPoints: Enumerable.Empty<P2V<float, Color>>(),
+                    plotLines: Enumerable.Empty<LS2V<float, Color>>(),
+                    filledRects: results,
+                    openRects: Enumerable.Empty<RV<float, Color>>()
+                );
         }
 
         public R<int> LatticeBounds { get; }
