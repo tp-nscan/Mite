@@ -153,6 +153,7 @@
     <Compile Include="ViewModel\Design\Common\GroupSelectorVmD.cs" />
     <Compile Include="ViewModel\Design\Common\HIst1DVmD.cs" />
     <Compile Include="ViewModel\Design\Common\Hist2DVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\IntRangeVmD.cs" />
     <Compile Include="ViewModel\Design\Common\LegendVmD.cs" />
     <Compile Include="ViewModel\Design\Common\ProjectionControlVmD.cs" />
     <Compile Include="View\Common\GraphLatticeControl.xaml.cs">
@@ -175,6 +176,9 @@
     </Compile>
     <Compile Include="View\Common\Hist2DControl.xaml.cs">
       <DependentUpon>Hist2DControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\IntRangeControl.xaml.cs">
+      <DependentUpon>IntRangeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Common\LegendControl.xaml.cs">
       <DependentUpon>LegendControl.xaml</DependentUpon>
@@ -224,6 +228,10 @@
     <Page Include="View\Common\Hist2DControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\IntRangeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Common\LegendControl.xaml">
       <Generator>MSBuild:Compile</Generator>

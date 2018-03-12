@@ -31,10 +31,10 @@ namespace Mite.WPF.ViewModel.Common
 
         void CurvalChanged()
         {
-            MinX.MaxVal = MaxX.CurVal;
-            MaxX.MinVal = MinX.CurVal;
-            MinY.MaxVal = MaxY.CurVal;
-            MaxY.MinVal = MinY.CurVal;
+            MinX.MaxVal = MaxX.CurVal - 1;
+            MaxX.MinVal = MinX.CurVal + 1;
+            MinY.MaxVal = MaxY.CurVal - 1;
+            MaxY.MinVal = MinY.CurVal + 1;
             Update();
         }
 

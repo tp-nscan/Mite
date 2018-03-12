@@ -1,7 +1,7 @@
 ﻿using Mite.Common;
 using System;
-using System.ComponentModel;
 using System.Reactive.Subjects;
+using System.Windows.Input;
 
 namespace Mite.WPF.ViewModel.Common
 {
@@ -20,7 +20,7 @@ namespace Mite.WPF.ViewModel.Common
         private int _curVal;
         public int CurVal
         {
-            get { return _curVal; }
+            get => _curVal;
             set
             {
                 if ((value > MaxVal) || (value < MinVal))
@@ -33,22 +33,60 @@ namespace Mite.WPF.ViewModel.Common
         private int _maxVal;
         public int MaxVal
         {
-            get { return _maxVal; }
-            set
-            {
-                SetProperty(ref _maxVal, value);
-            }
+            get => _maxVal;
+            set => SetProperty(ref _maxVal, value);
         }
 
         private int _minVal;
         public int MinVal
         {
-            get { return _minVal; }
-            set
-            {
-                SetProperty(ref _minVal, value);
-            }
+            get => _minVal;
+            set => SetProperty(ref _minVal, value);
         }
-    }
 
+        #region IncreaseCommand
+
+        RelayCommand _increaseCommand;
+
+        public ICommand IncreaseCommand => _increaseCommand ?? (_increaseCommand = new RelayCommand(
+            DoIncrease,
+            CanIncrease
+            ));
+
+        private void DoIncrease()
+        {
+            CurVal = CurVal + 1;
+        }
+
+        bool CanIncrease()
+        {
+            return true; // CurVal < MaxVal;
+        }
+
+        #endregion // IncreaseCommand
+
+
+
+        #region DecreaseCommand
+
+        RelayCommand _decreaseCommand;
+
+        public ICommand DecreaseCommand => _decreaseCommand ?? (_decreaseCommand = new RelayCommand(
+                                               DoDecrease,
+                                               CanDecrease
+        ));
+
+        private void DoDecrease()
+        {
+            CurVal = CurVal - 1;
+        }
+
+        bool CanDecrease()
+        {
+            return true; // CurVal > MinVal;
+        }
+
+        #endregion // DecreaseCommand
+
+        }
 }

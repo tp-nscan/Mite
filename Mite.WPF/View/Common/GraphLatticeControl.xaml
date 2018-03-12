@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:common="clr-namespace:Mite.View.Common"
     xmlns:common1="clr-namespace:Mite.WPF.ViewModel.Design.Common"
+    xmlns:common2="clr-namespace:Mite.WPF.View.Common"
     mc:Ignorable="d"
     d:DesignWidth="600"
     d:DesignHeight="600">
@@ -47,21 +48,15 @@
                 </StackPanel>
             </Viewbox>
 
-            <Viewbox VerticalAlignment="Bottom" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,0,0,5" Stretch="Uniform" MaxHeight="25">
-                <TextBox Text="{Binding MinY.CurVal}" />
-            </Viewbox>
 
-            <Viewbox VerticalAlignment="Top" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,5,0,0" Stretch="Uniform" MaxHeight="25">
-                <TextBox Text="{Binding MaxY.CurVal}" Margin="0,0,0,0" />
-            </Viewbox>
+            <common2:IntRangeControl VerticalAlignment="Bottom" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,0,0,5" Height="26" DataContext="{Binding MinY}" />
 
-            <Viewbox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Stretch="Uniform" Grid.ColumnSpan="1" MaxHeight="25">
-                <TextBox Text="{Binding MinX.CurVal}" />
-            </Viewbox>
-            
-            <Viewbox Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Stretch="Uniform" Grid.ColumnSpan="2" MaxHeight="25" Margin="0,0,20,0">
-                <TextBox Text="{Binding MaxX.CurVal}" />
-            </Viewbox>
+            <common2:IntRangeControl VerticalAlignment="Top" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,5,0,0" Height="26" DataContext="{Binding MaxY}" />
+ 
+            <common2:IntRangeControl Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Left" Height="26" DataContext="{Binding MinX}" />
+
+            <common2:IntRangeControl Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Height="26" DataContext="{Binding MaxX}"  Grid.ColumnSpan="2" Margin="0,0,20,0" />
+  
             
             <Viewbox Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Stretch="Uniform" Grid.ColumnSpan="2" Margin="0,4" MaxHeight="25">
                 <TextBlock  Text="{Binding TitleX}" />
