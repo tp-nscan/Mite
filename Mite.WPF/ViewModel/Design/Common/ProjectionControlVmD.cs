@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Mite.Common;
+using Mite.WPF.Common;
 using Mite.WPF.ViewModel.Common;
 
 namespace Mite.WPF.ViewModel.Design.Common

@@ -1,5 +1,5 @@
 ﻿
-namespace Mite.View.Common
+namespace Mite.WPF.View.Common
 {
     public sealed partial class GraphControl
     {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
-using Mite.Common;
 using TT;
 using Microsoft.FSharp.Core;
+using Mite.WPF.Common;
 
 namespace Mite.WPF.ViewModel.Common
 {

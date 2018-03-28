@@ -1,12 +1,9 @@
-﻿using System;
-using System.Net.Mail;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using Mite.Common;
+using Mite.WPF.Common;
 using TT;
 
-namespace Mite.View.Common
+namespace Mite.WPF.View.Common
 {
     public sealed partial class WbImage
     {
@@ -23,8 +20,8 @@ namespace Mite.View.Common
 
         public ImageData ImageData
         {
-            get { return (ImageData) GetValue(ImageDataProperty); }
-            set { SetValue(ImageDataProperty, value); }
+            get => (ImageData) GetValue(ImageDataProperty);
+            set => SetValue(ImageDataProperty, value);
         }
 
         public static readonly DependencyProperty ImageDataProperty =
@@ -144,8 +141,8 @@ namespace Mite.View.Common
 
         public Point PointerPosition
         {
-            get { return (Point)GetValue(PointerPositionProperty); }
-            set { SetValue(PointerPositionProperty, value); }
+            get => (Point)GetValue(PointerPositionProperty);
+            set => SetValue(PointerPositionProperty, value);
         }
 
         public static readonly DependencyProperty PointerPositionProperty =

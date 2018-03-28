@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Subjects;
 using System.Windows.Controls;
-using Mite.Common;
+using Mite.WPF.Common;
 
 namespace Mite.WPF.ViewModel.Common
 {

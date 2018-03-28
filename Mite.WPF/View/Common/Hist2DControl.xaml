@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:common="clr-namespace:Mite.WPF.ViewModel.Design.Common"
-             xmlns:common1="clr-namespace:Mite.View.Common"
-             x:Class="Mite.View.Common.Hist2DControl"
+             xmlns:common2="clr-namespace:Mite.WPF.View.Common"
+             x:Class="Mite.WPF.View.Common.Hist2DControl"
              mc:Ignorable="d" 
              d:DesignHeight="256" d:DesignWidth="268"
              d:DataContext="{d:DesignInstance Type=common:Hist2DvmD, IsDesignTimeCreatable=True}">
@@ -18,8 +18,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <!--<common1:Sz2IntCtrl Orientation="Horizontal" DataContext="{Binding BinCounts}"/>-->
-            <common1:LegendControl Grid.Row="1" DataContext="{Binding LegendVm}" />
-            <common1:GraphControl Grid.Row="2" x:Name="graphControl" DataContext="{Binding GraphVm}" />
+            <common2:LegendControl Grid.Row="1" DataContext="{Binding LegendVm}" />
+            <common2:GraphControl Grid.Row="2" x:Name="graphControl" DataContext="{Binding GraphVm}" />
         </Grid>
 
     </Grid>

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
-using Mite.Common;
+using Mite.WPF.Common;
 using TT;
 
 namespace Mite.WPF.ViewModel.Common
 {
     public class GraphLatticeVm : BindableBase
     {
-        public GraphLatticeVm(R<int> latticeBounds, string title="Title", string titleX = "TitleX", string titleY = "TitleY")
+        public GraphLatticeVm(R<int> latticeBounds, string title= "Title", string titleX = "TitleX", string titleY = "TitleY")
         {
             _wbImageVm = new WbImageVm();
             _imageSize = new Sz2<double>(1.0, 1.0);
@@ -38,38 +38,38 @@ namespace Mite.WPF.ViewModel.Common
             Update();
         }
 
-        private Func<P2<int>, R<double>, object> cellUpdater;
+        private Func<P2<int>, R<double>, object> _cellUpdater;
         public Func<P2<int>, R<double>, object> GetCellUpdater()
         {
-            return cellUpdater;
+            return _cellUpdater;
         }
 
         public void SetUpdater(Func<P2<int>, R<double>, object> value)
         {
-            cellUpdater = value;
+            _cellUpdater = value;
             if(WbImageVm != null) Update();
         }
 
         void Update()
         {
-             var results = new List<RV<float, Color>>();
+            var results = new List<RV<float, Color>>();
+            var cellSize = new Sz2<double>
+             (
+                x:ImageSize.X/(MaxX.CurVal - MinX.CurVal),
+                y: ImageSize.X / (MaxY.CurVal - MinY.CurVal)
+              );
 
-            var bRect = new R<float>(minX: 0, maxX: (float)ImageSize.X, 
-                                     minY: 0, maxY: (float)ImageSize.Y);
-            double spanX = MaxX.CurVal - MinX.CurVal;
-            double spanY = MaxY.CurVal - MinY.CurVal;
-
-            for(int i = MinX.CurVal; i < MaxX.CurVal; i++)
+            for(var i = MinX.CurVal; i < MaxX.CurVal; i++)
             {
-                for (int j = MinY.CurVal; j < MaxY.CurVal; j++)
+                for (var j = MinY.CurVal; j < MaxY.CurVal; j++)
                 {
                     results.Add( (RV<float, Color>)
-                        cellUpdater(new P2<int>(x: i, y: j),
+                        _cellUpdater(new P2<int>(x: i, y: j),
                                     new R<double>(
-                                            minX: i * ImageSize.X,
-                                            maxX: (i + 1) * ImageSize.X,
-                                            minY: j * ImageSize.Y,
-                                            maxY: (j + 1) * ImageSize.Y
+                                            minX: i * cellSize.X,
+                                            maxX: (i + 1) * cellSize.X,
+                                            minY: j * cellSize.Y,
+                                            maxY: (j + 1) * cellSize.Y
                                            )));
                 }
             }
@@ -85,64 +85,61 @@ namespace Mite.WPF.ViewModel.Common
         public R<int> LatticeBounds { get; }
 
         private readonly WbImageVm _wbImageVm;
-        public WbImageVm WbImageVm
-        {
-           get { return _wbImageVm; }
-        }
+        public WbImageVm WbImageVm => _wbImageVm;
 
         private IntRangeVm _maxX;
         public IntRangeVm MaxX
         {
-            get { return _maxX; }
-            set { SetProperty(ref _maxX, value); }
+            get => _maxX;
+            set => SetProperty(ref _maxX, value);
         }
 
         private IntRangeVm _minX;
         public IntRangeVm MinX
         {
-            get { return _minX; }
-            set { SetProperty(ref _minX, value); }
+            get => _minX;
+            set => SetProperty(ref _minX, value);
         }
 
         private IntRangeVm _minY;
         public IntRangeVm MinY
         {
-            get { return _minY; }
-            set { SetProperty(ref _minY, value); }
+            get => _minY;
+            set => SetProperty(ref _minY, value);
         }
 
         private IntRangeVm _maxY;
         public IntRangeVm MaxY
         {
-            get { return _maxY; }
-            set { SetProperty(ref _maxY, value); }
+            get => _maxY;
+            set => SetProperty(ref _maxY, value);
         }
 
         private string _title;
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         private string _titleX;
         public string TitleX
         {
-            get { return _titleX; }
-            set { SetProperty(ref _titleX, value); }
+            get => _titleX;
+            set => SetProperty(ref _titleX, value);
         }
 
         private string _titleY;
         public string TitleY
         {
-            get { return _titleY; }
-            set { SetProperty(ref _titleY, value); }
+            get => _titleY;
+            set => SetProperty(ref _titleY, value);
         }
 
         private Sz2<double> _imageSize;
         public Sz2<double> ImageSize
         {
-            get { return _imageSize; }
+            get => _imageSize;
             set {
                 SetProperty(ref _imageSize, value);
                 Update();

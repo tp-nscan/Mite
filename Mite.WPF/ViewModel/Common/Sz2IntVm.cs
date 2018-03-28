@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Reactive.Subjects;
 using System.Windows;
 using System.Windows.Input;
-using Mite.Common;
+using Mite.WPF.Common;
 using TT;
 
 namespace Mite.WPF.ViewModel.Common

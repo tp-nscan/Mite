@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:common="clr-namespace:Mite.WPF.ViewModel.Design.Common"
-             xmlns:common1="clr-namespace:Mite.View.Common"
-             x:Class="Mite.View.Common.Hist1DControl"
+             xmlns:common2="clr-namespace:Mite.WPF.View.Common"
+             x:Class="Mite.WPF.View.Common.Hist1DControl"
              mc:Ignorable="d" 
              d:DesignHeight="256" d:DesignWidth="268"
              d:DataContext="{d:DesignInstance Type=common:Hist1DvmD, IsDesignTimeCreatable=True}">
@@ -32,7 +32,7 @@
                     <TextBox MinWidth="30" Text="{Binding BinCount}" Margin="4,0,0,0" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
             </Border>
-            <common1:GraphControl Grid.Row="1" x:Name="graphControl" DataContext="{Binding GraphVm}" />
+            <common2:GraphControl Grid.Row="1" x:Name="graphControl" DataContext="{Binding GraphVm}" />
         </Grid>
 
     </Grid>

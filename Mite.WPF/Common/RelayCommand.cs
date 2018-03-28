@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Mite.Common
+namespace Mite.WPF.Common
 {
     /// <summary>
     /// A command whose sole purpose is to relay its functionality 

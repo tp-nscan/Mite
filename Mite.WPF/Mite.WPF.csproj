@@ -133,7 +133,9 @@
     <Compile Include="Common\EnumerExt.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\StringFormats.cs" />
+    <Compile Include="ViewModel\Common\GpuArrayVm.cs" />
     <Compile Include="ViewModel\Common\GraphLatticeVm.cs" />
+    <Compile Include="ViewModel\Common\GraphTilesVm.cs" />
     <Compile Include="ViewModel\Common\GraphVm.cs" />
     <Compile Include="ViewModel\Common\Grid2DVm.cs" />
     <Compile Include="ViewModel\Common\Grid4DVm.cs" />
@@ -145,8 +147,11 @@
     <Compile Include="ViewModel\Common\IntRangeVm.cs" />
     <Compile Include="ViewModel\Common\ProjectionControlVm.cs" />
     <Compile Include="ViewModel\Common\Sz2IntVm.cs" />
-    <Compile Include="ViewModel\Common\WbImageData.cs" />
+    <Compile Include="ViewModel\Common\TileVm.cs" />
     <Compile Include="ViewModel\Common\WbImageVm.cs" />
+    <Compile Include="ViewModel\Design\Common\GpuArrayVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\GraphLatticeVmD.cs" />
+    <Compile Include="ViewModel\Design\Common\GraphTilesVmD.cs" />
     <Compile Include="ViewModel\Design\Common\GraphVmD.cs" />
     <Compile Include="ViewModel\Design\Common\Grid2DVmD.cs" />
     <Compile Include="ViewModel\Design\Common\Grid4DVmD.cs" />
@@ -161,6 +166,9 @@
     </Compile>
     <Compile Include="View\Common\GraphControl.xaml.cs">
       <DependentUpon>GraphControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\GraphTilesControl.xaml.cs">
+      <DependentUpon>GraphTilesControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Common\Grid2DControl.xaml.cs">
       <DependentUpon>Grid2DControl.xaml</DependentUpon>
@@ -186,6 +194,9 @@
     <Compile Include="View\Common\ProjectionControl.xaml.cs">
       <DependentUpon>ProjectionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Common\TilesControl.xaml.cs">
+      <DependentUpon>TilesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Common\WbImage.xaml.cs">
       <DependentUpon>WbImage.xaml</DependentUpon>
     </Compile>
@@ -208,6 +219,10 @@
     <Page Include="View\Common\GraphControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\GraphTilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Common\Grid2DControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -240,6 +255,10 @@
     <Page Include="View\Common\ProjectionControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\TilesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Common\WbImage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -281,6 +300,10 @@
     <ProjectReference Include="..\Mite.Cpp.CLI\Mite.Cpp.CLI.vcxproj">
       <Project>{146f3245-7f2d-416f-9978-0fa733ad2f2f}</Project>
       <Name>Mite.Cpp.CLI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mite.Device\Mite.Device.csproj">
+      <Project>{833a2138-e495-4c90-92f7-96b4c1a61563}</Project>
+      <Name>Mite.Device</Name>
     </ProjectReference>
     <ProjectReference Include="..\TT\TT.fsproj">
       <Project>{e32e990b-c010-4014-8e45-22c2a577caa1}</Project>

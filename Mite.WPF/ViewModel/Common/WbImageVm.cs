@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reactive.Subjects;
 using System.Windows;
-using Mite.Common;
+using Mite.WPF.Common;
 using TT;
 
 namespace Mite.WPF.ViewModel.Common

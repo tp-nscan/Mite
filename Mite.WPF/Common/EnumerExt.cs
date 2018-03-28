@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TT;
 
-namespace Mite.Common
+namespace Mite.WPF.Common
 {
     public static class EnumerExt
     {

@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Mite.Common.Converters
+namespace Mite.WPF.Common.Converters
 {
     public class AdditionConverter : IValueConverter
     {

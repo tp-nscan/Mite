@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Mite.Common
+namespace Mite.WPF.Common
 {
     public static class StringFormats
     {

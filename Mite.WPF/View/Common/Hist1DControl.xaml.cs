@@ -1,4 +1,4 @@
-﻿namespace Mite.View.Common
+﻿namespace Mite.WPF.View.Common
 {
     /// <summary>
     /// Interaction logic for Hist1DControl.xaml

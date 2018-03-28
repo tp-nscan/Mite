@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Mite.Common;
 using MathNet.Numerics.LinearAlgebra;
+using Mite.WPF.Common;
 using TT;
 
 namespace Mite.WPF.ViewModel.Common

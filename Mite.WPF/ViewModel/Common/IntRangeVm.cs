@@ -1,7 +1,7 @@
-﻿using Mite.Common;
-using System;
+﻿using System;
 using System.Reactive.Subjects;
 using System.Windows.Input;
+using Mite.WPF.Common;
 
 namespace Mite.WPF.ViewModel.Common
 {
